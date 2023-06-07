@@ -1,6 +1,27 @@
 <?php
+use App\Repository\ProductRepository;
 
 require '../vendor/autoload.php';
+
+$repo = new ProductRepository();
+var_dump($repo->findAll());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //On crée une connexion à la base de données SQL qu'on veut utiliser
 $connection = new PDO("mysql:host=localhost;dbname=php_pdo", "root", "1234");
 //Avec cette connexion, on prépare la requête que l'on souhaite exécuter, ici récupérer tous les produits
@@ -12,3 +33,4 @@ foreach($query->fetchAll() as $line) {
     echo $line['label'];
 }
 
+*/
