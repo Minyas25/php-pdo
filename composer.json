@@ -14,5 +14,8 @@
             "email": "jean@demel.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "config": {
+      "process-timeout":0
+    }
 }
