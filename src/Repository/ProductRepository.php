@@ -22,7 +22,7 @@ class ProductRepository
     public function findAll(): array
     {
         $list = [];
-        $connection = new \PDO("mysql:host=localhost;dbname=php_pdo", "root", "1234");
+        $connection = Database::getConnection();
 
         $query = $connection->prepare("SELECT * FROM product");
 
@@ -35,6 +35,22 @@ class ProductRepository
 
         return $list;
     }
+
+    public function findById(int $id):?Product {
+
+        $connection = Database::getConnection();
+
+        $query = $connection->prepare("SELECT * FROM product WHERE id=:id ");
+        $query->bindValue(":id", $id);
+        $query->execute();
+
+        foreach ($query->fetchAll() as $line) {
+            return new Product($line["label"], $line["price"], $line["description"], $line["id"]);
+        }
+        return null;
+
+    }
+
     /**
      * Méthode qui va prendre une instance de Product en argument et va la transformer en requête INSERT INTO pour 
      * la faire persister en base de données
@@ -42,7 +58,7 @@ class ProductRepository
      * (le fait d'avoir des chaînes de caractères contenant du code qui pourrait être exécuté par SQL à notre insu)
      */
     public function persist(Product $product) {
-        $connection = new \PDO("mysql:host=localhost;dbname=php_pdo", "root", "1234");
+        $connection = Database::getConnection();
 
         $query = $connection->prepare("INSERT INTO product (label,price,description) VALUES (:label,:price,:description)");
         $query->bindValue(':label', $product->getLabel());
@@ -52,5 +68,17 @@ class ProductRepository
         $query->execute();
 
         $product->setId($connection->lastInsertId());
+    }
+
+    /**
+     * Méthode qui permet de supprimer un produit de la base de données en se basant sur son id
+     */
+    public function delete(int $id) {
+
+        $connection = Database::getConnection();
+
+        $query = $connection->prepare("DELETE FROM product WHERE id=:id");
+        $query->bindValue(":id", $id);
+        $query->execute();
     }
 }

@@ -5,21 +5,23 @@ use App\Repository\ProductRepository;
 require '../vendor/autoload.php';
 
 $repository = new ProductRepository();
-$products = $repository->findAll();
+// $products = $repository->findAll();
 
-$toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
+// $toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
 
-$repository->persist($toPersist);
-
-
-var_dump($toPersist);
+// $repository->persist($toPersist);
 
 
+// var_dump($toPersist);
+
+$product = $repository->findById(100);
+var_dump($product);
 
 
 
 
 
+// $repository->delete(1);
 
 
 
