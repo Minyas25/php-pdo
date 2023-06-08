@@ -1,4 +1,9 @@
 <?php
+/**
+ * Le fichier index.php fait ici office de fichier de test. C'est le fichier qui est lancé lorsqu'on va
+ * sur localhost:8000 et qui va donc servir de "point de départ" à l'application
+ */
+
 use App\Entity\Product;
 use App\Repository\ProductRepository;
 
@@ -7,9 +12,9 @@ require '../vendor/autoload.php';
 $repository = new ProductRepository();
 // $products = $repository->findAll();
 
-// $toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
+$toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
 
-// $repository->persist($toPersist);
+$repository->persist($toPersist);
 
 
 // var_dump($toPersist);

@@ -36,6 +36,12 @@ class ProductRepository
         return $list;
     }
 
+    /**
+     * Méthode permettant de récupérer un produit spécifique en se basant sur son id
+     * Si aucun produit n'existe pour cet id dans la base de données, on renvoie null
+     * 
+     * @param $id l'id du produit que l'on souhaite récupérer
+     */
     public function findById(int $id):?Product {
 
         $connection = Database::getConnection();
@@ -56,6 +62,8 @@ class ProductRepository
      * la faire persister en base de données
      * Très important d'utiliser des :placeholder dans la requête et des bindValue afin d'éviter les injection SQL 
      * (le fait d'avoir des chaînes de caractères contenant du code qui pourrait être exécuté par SQL à notre insu)
+     * 
+     * @param $product Le produit que l'on souhaite faire persister (qui n'aura donc pas d'id au début de la méthode, car pas encore dans la bdd)
      */
     public function persist(Product $product) {
         $connection = Database::getConnection();
@@ -72,6 +80,8 @@ class ProductRepository
 
     /**
      * Méthode qui permet de supprimer un produit de la base de données en se basant sur son id
+     * 
+     * @param $id l'id du produit à supprimer
      */
     public function delete(int $id) {
 
