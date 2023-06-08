@@ -1,13 +1,14 @@
 <?php
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 
 require '../vendor/autoload.php';
 
-$repo = new ProductRepository();
-var_dump($repo->findAll());
+$repository = new ProductRepository();
+$products = $repository->findAll();
 
-
-
+$toPersist = new Product("Chaussette", 10 , "Ma description de chaussette");
+$repository->persist($toPersist);
 
 
 

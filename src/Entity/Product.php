@@ -5,12 +5,12 @@ namespace App\Entity;
 
 class Product
 {
-    private int $id;
+    private ?int $id;
     private string $label;
     private float $price;
     private string $description;
 
-    public function __construct(int $id, string $label, float $price, string $description)
+    public function __construct(string $label, float $price, string $description, ?int $id = null)
     {
         $this->id = $id;
         $this->label = $label;

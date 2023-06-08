@@ -1,4 +1,4 @@
--- Active: 1685437430041@@127.0.0.1@3306@php_pdo
+-- Active: 1623772641700@@127.0.0.1@3306@php_pdo
 DROP TABLE IF EXISTS product;
 
 CREATE TABLE product (

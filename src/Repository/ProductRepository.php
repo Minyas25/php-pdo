@@ -27,4 +27,19 @@ class ProductRepository
 
         return $list;
     }
+    /**
+     * Méthode qui va prendre une instance de Product en argument et va le faire persister en base de données
+     * Très important d'utiliser des placeholder dans la requête et des bindValue afin d'éviter les injection SQL 
+     * (le fait d'avoir des chaînes de caractères contenant du code qui pourrait être exécuté par SQL à notre insu)
+     */
+    public function persist(Product $product) {
+        $connection = new \PDO("mysql:host=localhost;dbname=php_pdo", "root", "1234");
+
+        $query = $connection->prepare("INSERT INTO product (label,price,description) VALUES (:label,:price,:description)");
+        $query->bindValue(':label', $product->getLabel());
+        $query->bindValue(':price', $product->getPrice());
+        $query->bindValue(':description', $product->getDescription());
+
+        $query->execute();
+    }
 }
