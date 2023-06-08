@@ -91,4 +91,20 @@ class ProductRepository
         $query->bindValue(":id", $id);
         $query->execute();
     }
+
+    /**
+     * Méthode pour mettre un jour un produit existant en base de données
+     */
+    public function update(Product $product) {
+        
+        $connection = Database::getConnection();
+
+        $query = $connection->prepare("UPDATE product SET label=:label, description=:description, price=:price WHERE id=:id");
+        $query->bindValue(':label', $product->getLabel());
+        $query->bindValue(':price', $product->getPrice());
+        $query->bindValue(':description', $product->getDescription());
+        $query->bindValue(':id', $product->getId());
+
+        $query->execute();
+    }
 }

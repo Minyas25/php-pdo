@@ -12,17 +12,18 @@ require '../vendor/autoload.php';
 $repository = new ProductRepository();
 // $products = $repository->findAll();
 
-$toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
+// $toPersist = new Product("Chaussette", 10, "Ma description de chaussette");
 
-$repository->persist($toPersist);
+// $repository->persist($toPersist);
 
 
 // var_dump($toPersist);
 
-$product = $repository->findById(100);
-var_dump($product);
+$product = $repository->findById(1);
+// var_dump($product);
+$product->setPrice(300);
 
-
+$repository->update($product);
 
 
 
