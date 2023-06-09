@@ -46,6 +46,7 @@ $products = $repository->findAll();
                             <p class="card-text text-end">
                                 <?= $item->getPrice() ?>€
                             </p>
+                            <a href="single-product.php?id=<?= $item->getId() ?>" class="card-link">Details</a>
                         </div>
                     </div>
                 </div>
