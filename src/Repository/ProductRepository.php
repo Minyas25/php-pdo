@@ -17,7 +17,7 @@ class ProductRepository
     /**
      * Méthode qui va faire une requête pour récupérer tous les produits de la base de données puis qui va boucler
      * sur les résultat de la requête pour transformer chaque ligne de résultat en instance de la classe Product
-     * @return Product[];
+     * @return Product[] La liste des produits contenus dans la base de données;
      */
     public function findAll(): array
     {
@@ -31,7 +31,6 @@ class ProductRepository
         foreach ($query->fetchAll() as $line) {
             $list[] = new Product($line["label"], $line["price"], $line["description"], $line["id"]);
         }
-
 
         return $list;
     }
@@ -75,6 +74,7 @@ class ProductRepository
 
         $query->execute();
 
+        //On assigne l'id auto incrémenté à l'instance de produit afin que l'objet soit complet après le persist
         $product->setId($connection->lastInsertId());
     }
 
@@ -94,6 +94,8 @@ class ProductRepository
 
     /**
      * Méthode pour mettre un jour un produit existant en base de données
+     * 
+     * @param Product $product Le produit à mettre à jour. Il doit avoir un id correspondant à une ligne de la bdd
      */
     public function update(Product $product) {
         

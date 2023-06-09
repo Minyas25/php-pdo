@@ -20,10 +20,13 @@ $repository = new ProductRepository();
 // var_dump($toPersist);
 
 $product = $repository->findById(1);
+
+// $product = new Product("Tente", 60, "Très belle tente",2);
 // var_dump($product);
 $product->setPrice(300);
 
 $repository->update($product);
+
 
 
 
