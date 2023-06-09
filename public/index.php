@@ -40,7 +40,8 @@ $products = $repository->findAll();
                                 <?= $item->getLabel() ?>
                             </h3>
                             <p class="card-text">
-                                <?php echo $item->getDescription() ?>
+                                <!-- le htmlspecialchars sert à échaper tous les caractères HTML (et donc Javascript) pour éviter que le navigateur exécute du code qui aurait été rentré dans le formulaire -->
+                                <?= htmlspecialchars($item->getDescription()) ?>
                             </p>
                             <p class="card-text text-end">
                                 <?= $item->getPrice() ?>€

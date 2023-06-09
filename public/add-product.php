@@ -7,10 +7,6 @@ require '../vendor/autoload.php';
 
 $repository = new ProductRepository();
 
-if(!empty($_POST['label']) && !empty($_POST['price']) && !empty($_POST['description'])) {
-    $product = new Product($_POST['label'], $_POST['price'], $_POST['description']);
-    $repository->persist($product);
-}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +33,16 @@ if(!empty($_POST['label']) && !empty($_POST['price']) && !empty($_POST['descript
             <textarea name="description" id="description" class="form-control"></textarea>
             <button class="btn btn-primary">Add</button>
         </form>
+        <?php
+
+        if (!empty($_POST['label']) && !empty($_POST['price']) && !empty($_POST['description'])) {
+
+            $product = new Product($_POST['label'], $_POST['price'], $_POST['description']);
+            $repository->persist($product);
+            echo "<p class=\"text-success\">You successfully added a product with id {$product->getId()}</p>";
+        }
+
+        ?>
     </div>
 </body>
 
