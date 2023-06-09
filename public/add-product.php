@@ -32,7 +32,7 @@ if(!empty($_POST['label']) && !empty($_POST['price']) && !empty($_POST['descript
             <label for="label">label</label>
             <input type="text" name="label" id="label" class="form-control" required>
             <label for="price">Price</label>
-            <input type="number" name="price" id="price" class="form-control">
+            <input type="number" step=".01" name="price" id="price" class="form-control">
             <label for="description">description</label>
             <textarea name="description" id="description" class="form-control"></textarea>
             <button class="btn btn-primary">Add</button>
